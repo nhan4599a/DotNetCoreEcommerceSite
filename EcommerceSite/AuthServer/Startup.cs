@@ -6,6 +6,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.Net;
+using System.Net.Mail;
 
 namespace AuthServer
 {
@@ -24,18 +27,31 @@ namespace AuthServer
         {
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
+            var password = Environment.GetEnvironmentVariable("EMAIL_PASSWORD");
+
             services.AddDbContext<AuthServerDbContext>(options =>
             {
                 options.UseSqlServer(connectionString);
             });
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
                 options.SignIn.RequireConfirmedEmail = true;
-            }).AddEntityFrameworkStores<AuthServerDbContext>();
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredLength = 8;
+            }).AddEntityFrameworkStores<AuthServerDbContext>()
+            .AddTokenProvider<EmailTokenProvider<IdentityUser>>(TokenOptions.DefaultProvider);
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddTransient(options => new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                Credentials = new NetworkCredential("nhan0385790927@gmail.com", password)
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

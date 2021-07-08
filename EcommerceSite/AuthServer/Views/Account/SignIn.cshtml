@@ -1,0 +1,44 @@
+﻿@{
+    Layout = null;
+}
+@using AuthServer.ViewComponents;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login page</title>
+    <link rel="stylesheet" href="@Url.Content("~/lib/bootstrap/css/bootstrap.min.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/lib/fontawesome/css/all.min.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/lib/animate/css/animate.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/main.css")" />
+    <link rel="stylesheet" href="@Url.Content("~/css/util.css")" />
+    <style>
+        .validation-summary-errors {
+            color: red
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        @await Component.InvokeAsync("AuthView", AuthView.FormType.SIGN_IN)
+    </div>
+    <script src="@Url.Content("~/lib/jquery/dist/jquery.js")"></script>
+    <!--===============================================================================================-->
+    <script src="@Url.Content("~/lib/popper/js/popper.min.js")"></script>
+    <script src="@Url.Content("~/lib/bootstrap/js/bootstrap.min.js")"></script>
+    <!--===============================================================================================-->
+    <script src="@Url.Content("~/lib/select2/js/select2.min.js")"></script>
+    <!--===============================================================================================-->
+    <script src="@Url.Content("~/lib/tilt/js/tilt.jquery.min.js")"></script>
+    <script>
+        $('.js-tilt').tilt({
+            scale: 1.1
+        })
+    </script>
+    <!--===============================================================================================-->
+    <script src="@Url.Content("~/js/main.js")"></script>
+</body>
+</html>
