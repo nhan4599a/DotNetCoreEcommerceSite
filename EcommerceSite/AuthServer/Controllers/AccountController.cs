@@ -1,11 +1,12 @@
 ﻿using AuthServer.Model;
+using IdentityServer4.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
-using System.Web;
 using System.Net.Mail;
-using System.Security.Claims;
+using System.Threading.Tasks;
+using System.Web;
 
 namespace AuthServer.Controllers
 {
@@ -17,15 +18,19 @@ namespace AuthServer.Controllers
 
         public IConfiguration Configuration { get; }
 
-        public AccountController(SignInManager<IdentityUser> signInManager, SmtpClient smtpClient, IConfiguration configuration)
+        public IIdentityServerInteractionService Interaction { get; }
+
+        public AccountController(SignInManager<IdentityUser> signInManager, SmtpClient smtpClient, IConfiguration configuration, IIdentityServerInteractionService interaction)
         {
             SignInManager = signInManager;
             SmtpClient = smtpClient;
             Configuration = configuration;
+            Interaction = interaction;
         }
 
-        public IActionResult SignIn()
+        public IActionResult SignIn(string ReturnUrl = "~/")
         {
+            ViewBag.ReturnUrl = ReturnUrl;
             return View();
         }
 
@@ -47,7 +52,7 @@ namespace AuthServer.Controllers
             var signInResult = await SignInManager.PasswordSignInAsync(user, model.Password, false, true);
             if (signInResult.Succeeded)
             {
-                return Redirect("/");
+                return Redirect(model.ReturnUrl);
             }
             if (signInResult.IsLockedOut)
             {
@@ -118,12 +123,11 @@ namespace AuthServer.Controllers
             return RedirectToAction("SignIn");
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public new async Task<IActionResult> SignOut()
+        public async Task<IActionResult> SignOut(string logoutId)
         {
-            await SignInManager.SignOutAsync();
-            return Redirect("~/");
+            await HttpContext.SignOutAsync();
+            var logout = await Interaction.GetLogoutContextAsync(logoutId);
+            return Redirect(string.IsNullOrEmpty(logout.PostLogoutRedirectUri) ? "~/" : logout.PostLogoutRedirectUri);
         }
     }
 }

@@ -43,6 +43,22 @@ namespace AuthServer
             }).AddEntityFrameworkStores<AuthServerDbContext>()
             .AddTokenProvider<EmailTokenProvider<IdentityUser>>(TokenOptions.DefaultProvider);
 
+            services.AddIdentityServer(options =>
+            {
+                options.Events.RaiseSuccessEvents = true;
+                options.Events.RaiseFailureEvents = true;
+                options.Events.RaiseInformationEvents = true;
+                options.Events.RaiseErrorEvents = true;
+                options.UserInteraction.LoginUrl = "/Account/SignIn";
+                options.UserInteraction.LogoutUrl = "/Account/SignOut";
+            }).AddInMemoryApiResources(Config.Apis)
+            .AddInMemoryIdentityResources(Config.IdentityResources)
+            .AddInMemoryClients(Config.Client)
+            .AddAspNetIdentity<IdentityUser>()
+            .AddDeveloperSigningCredential();
+
+            services.AddAuthentication();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddTransient(options => new SmtpClient
@@ -53,7 +69,7 @@ namespace AuthServer
                 Credentials = new NetworkCredential("nhan0385790927@gmail.com", password)
             });
         }
-
+            
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -64,7 +80,7 @@ namespace AuthServer
 
             app.UseStaticFiles();
             app.UseRouting();
-            app.UseAuthentication();
+            app.UseIdentityServer();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

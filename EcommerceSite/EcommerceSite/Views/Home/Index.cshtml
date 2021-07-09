@@ -2,6 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 <partial name="~/Views/Shared/Hero.cshtml" />
+@User.Identity.IsAuthenticated
 <main id="main">
     <!-- ======= Cliens Section ======= -->
     <section id="cliens" class="cliens section-bg">

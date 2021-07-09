@@ -402,3 +402,10 @@ C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\n
 C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\obj\Debug\net5.0\Razor\Views\Shared\Hero.cshtml.g.cs
+C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll

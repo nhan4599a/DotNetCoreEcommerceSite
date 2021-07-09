@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -18,6 +20,27 @@ namespace EcommerceSite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            _ = services.AddAuthentication(options =>
+              {
+                  options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                  options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+              }).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
+            {
+                options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.Authority = "https://localhost:44380/";
+                options.RequireHttpsMetadata = true;
+                options.ClientId = "webclient";
+                options.ClientSecret = "e41316e77ea871fe63180c82bc268544a361fa4b";
+                options.ResponseType = "code id_token";
+                options.UsePkce = false;
+                options.SaveTokens = true;
+                options.GetClaimsFromUserInfoEndpoint = true;
+                options.SignedOutRedirectUri = "https://localhost:44381/Home/CookieLogout";
+                options.Scope.Add("product.api");
+                options.Scope.Add("offline_access");
+            });
+            services.AddMvc();
             services.AddControllersWithViews();
         }
 
@@ -33,9 +56,16 @@ namespace EcommerceSite
                 app.UseExceptionHandler("/Home/Error");
             }
             app.UseStaticFiles();
+            app.UseCookiePolicy(new CookiePolicyOptions
+            {
+                MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.Lax
+            });
 
             app.UseRouting();
+            app.UseCors("default");
 
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
