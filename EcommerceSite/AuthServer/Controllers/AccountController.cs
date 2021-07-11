@@ -41,18 +41,18 @@ namespace AuthServer.Controllers
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("Login Error", "Email or password is invalid");
-                return View();
+                return SignIn(model.ReturnUrl);
             }
             var user = await SignInManager.UserManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
                 ModelState.AddModelError("Login Error", "Email or password is in correct");
-                return View();
+                return SignIn(model.ReturnUrl);
             }
             var signInResult = await SignInManager.PasswordSignInAsync(user, model.Password, false, true);
             if (signInResult.Succeeded)
             {
-                return Redirect(model.ReturnUrl);
+                return Redirect(string.IsNullOrEmpty(model.ReturnUrl) ? "~/" : model.ReturnUrl);
             }
             if (signInResult.IsLockedOut)
             {
@@ -62,7 +62,7 @@ namespace AuthServer.Controllers
             {
                 ModelState.AddModelError("Login Error", "Email is not confirmed");
             }
-            return View();
+            return SignIn(model.ReturnUrl);
         }
 
         public IActionResult SignUp()
