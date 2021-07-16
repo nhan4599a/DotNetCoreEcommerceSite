@@ -3,18 +3,17 @@ import TopNavBar from "./components/TopNavBar";
 import { BrowserRouter as Router } from "react-router-dom";
 import logo from "./logo.svg";
 import Content from "./components/Content";
+import AuthService from "./Helper/AuthHelper";
 
 function App() {
-	var accessToken = localStorage.getItem("access_token");
+	const authService = new AuthService();
+
 	return (
-		<>
-			{accessToken}
-			<Router>
-				<LeftNavBar></LeftNavBar>
-				<TopNavBar></TopNavBar>
-				<Content></Content>
-			</Router>
-		</>
+		<Router>
+			<LeftNavBar></LeftNavBar>
+			<TopNavBar isLoggedIn={authService.isLoggedIn()}></TopNavBar>
+			<Content></Content>
+		</Router>
 	);
 }
 

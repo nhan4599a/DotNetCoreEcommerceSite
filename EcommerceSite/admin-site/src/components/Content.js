@@ -5,7 +5,7 @@ export default class Content extends React.Component {
 	render() {
 		return (
 			<>
-				<Route path="/" exact=""></Route>
+				<Route path="/" exact></Route>
 			</>
 		);
 	}
