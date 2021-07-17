@@ -1,18 +1,18 @@
 import LeftNavBar from "./components/LeftNavBar";
 import TopNavBar from "./components/TopNavBar";
-import { BrowserRouter as Router } from "react-router-dom";
-import logo from "./logo.svg";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Content from "./components/Content";
-import AuthService from "./Helper/AuthHelper";
+import Login from "./components/Login";
+import PostLogin from "./components/PostLogin";
 
 function App() {
-	const authService = new AuthService();
-
 	return (
 		<Router>
 			<LeftNavBar></LeftNavBar>
-			<TopNavBar isLoggedIn={authService.isLoggedIn()}></TopNavBar>
+			<TopNavBar></TopNavBar>
 			<Content></Content>
+			<Route path="/login" exact component={Login}></Route>
+			<Route path="/post-login" exact component={PostLogin}></Route>
 		</Router>
 	);
 }

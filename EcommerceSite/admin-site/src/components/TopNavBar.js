@@ -1,6 +1,22 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import AuthHelper from "../helpers/AuthHelper";
 
 export default class TopNavBar extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			userInfo: null,
+		};
+	}
+
+	componentDidMount() {
+		AuthHelper.getInstance()
+			.getManager()
+			.getUser()
+			.then((user) => this.setState({ userInfo: user }));
+	}
+
 	render() {
 		return (
 			<header className="topbar-nav">
@@ -23,9 +39,12 @@ export default class TopNavBar extends React.Component {
 								</a>
 							</form>
 						</li>
+						{this.state.userInfo ? (
+							<Link to="/">Hello</Link>
+						) : (
+							<Link to="/login">Login</Link>
+						)}
 					</ul>
-
-					<a href="/">{this.props.isLoggedIn ? "Hello" : "Login"}</a>
 				</nav>
 			</header>
 		);
