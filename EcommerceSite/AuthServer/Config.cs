@@ -32,15 +32,15 @@ namespace AuthServer
             {
                 ClientId = "spaclient",
                 ClientName = "SPA client",
-                ClientUri = "https://localhost:3000",
+                ClientUri = "http://localhost:3000",
                 RequireConsent = false,
                 AllowedGrantTypes = GrantTypes.Code,
                 RequirePkce = true,
                 RequireClientSecret = false,
                 AllowAccessTokensViaBrowser = true,
-                RedirectUris = { "https://localhost:3000/" },
-                PostLogoutRedirectUris = { "https://localhost:3000/" },
-                AllowedCorsOrigins = { "https://localhost:3000" },
+                RedirectUris = { "http://localhost:3000/post-login", "http://localhost:3000/post-logout" },
+                PostLogoutRedirectUris = { "http://localhost:3000/post-logout" },
+                AllowedCorsOrigins = { "http://localhost:3000" },
                 AllowedScopes = { "openid", "profile", "product.api" }
             }
         };
