@@ -39,6 +39,10 @@ namespace EcommerceSite
                 options.SignedOutRedirectUri = "https://localhost:44381/Home/CookieLogout";
                 options.Scope.Add("product.api");
                 options.Scope.Add("offline_access");
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    NameClaimType = "name"
+                };
             });
             services.AddMvc();
             services.AddControllersWithViews();

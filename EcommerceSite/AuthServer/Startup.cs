@@ -69,7 +69,7 @@ namespace AuthServer
                 Credentials = new NetworkCredential("nhan0385790927@gmail.com", password)
             });
         }
-            
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
