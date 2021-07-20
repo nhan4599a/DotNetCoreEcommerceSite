@@ -1,27 +1,21 @@
-﻿using EcommerceSite.Models;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+﻿using EcommerceSite.Helper;
+using EcommerceSite.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace EcommerceSite.Controllers
 {
-
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        public async Task<IActionResult> Home()
         {
-            _logger = logger;
-        }
-
-        public IActionResult Home()
-        {
-            return View("Index");
+            ApiCaller apiCaller = ApiCaller.getInstance();
+            var categories = await apiCaller.GetCategories();
+            var hotProducts = await apiCaller.GetHotProducts();
+            var newProducts = await apiCaller.GetNewProducts();
+            HomePageModel model = new() { Categories = categories, HotProducts = hotProducts, NewProducts = newProducts };
+            return View("Index", model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

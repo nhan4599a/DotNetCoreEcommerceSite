@@ -2,7 +2,7 @@
 
 namespace Api.Models
 {
-    public partial class Category
+    public class Category
     {
         public Category()
         {

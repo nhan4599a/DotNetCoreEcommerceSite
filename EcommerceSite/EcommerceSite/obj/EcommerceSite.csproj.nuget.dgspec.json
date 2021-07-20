@@ -27,7 +27,11 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\nhan0\\source\\repos\\Assignment-1\\EcommerceSite\\SharedModel\\SharedModel.csproj": {
+                "projectPath": "C:\\Users\\nhan0\\source\\repos\\Assignment-1\\EcommerceSite\\SharedModel\\SharedModel.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -51,6 +55,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[5.0.2, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
             }
           },
           "imports": [
@@ -68,6 +76,70 @@
               "privateAssets": "none"
             },
             "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\nhan0\\source\\repos\\Assignment-1\\EcommerceSite\\SharedModel\\SharedModel.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\nhan0\\source\\repos\\Assignment-1\\EcommerceSite\\SharedModel\\SharedModel.csproj",
+        "projectName": "SharedModel",
+        "projectPath": "C:\\Users\\nhan0\\source\\repos\\Assignment-1\\EcommerceSite\\SharedModel\\SharedModel.csproj",
+        "packagesPath": "C:\\Users\\nhan0\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nhan0\\source\\repos\\Assignment-1\\EcommerceSite\\SharedModel\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\nhan0\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[10.3.0, )"
+            },
+            "System.ComponentModel.Annotations": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
               "privateAssets": "all"
             }
           },

@@ -2,7 +2,7 @@
 
 namespace Api.Models
 {
-    public partial class InvoiceDetail
+    public class InvoiceDetail
     {
         public Guid InvoiceId { get; set; }
         public Guid ProductId { get; set; }

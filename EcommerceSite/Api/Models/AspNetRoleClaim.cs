@@ -1,6 +1,6 @@
 ﻿namespace Api.Models
 {
-    public partial class AspNetRoleClaim
+    public class AspNetRoleClaim
     {
         public int Id { get; set; }
         public string RoleId { get; set; }

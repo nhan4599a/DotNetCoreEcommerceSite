@@ -11,11 +11,11 @@ namespace Api.Controllers
     [Route("/api/[controller]")]
     public class CategoriesController : ControllerBase
     {
-        private readonly AssignmentContext db;
+        private readonly ApplicationDbContext db;
 
         public CategoriesController()
         {
-            db = new AssignmentContext();
+            db = new ApplicationDbContext();
         }
 
         [HttpGet]
@@ -34,7 +34,7 @@ namespace Api.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return new ApiJsonResponseModel<CategoryModel> { Data = null, ErrorMessage = "Parameter does not meet condition", ResponseCode = 400 };
+                return new ApiJsonResponseModel<CategoryModel> { Data = null, ErrorMessage = ErrorMessages.MODEL_INVALID, ResponseCode = HttpResponseCode.BAD_REQUEST };
             }
             try
             {
@@ -45,7 +45,7 @@ namespace Api.Controllers
             }
             catch (Exception e)
             {
-                return new ApiJsonResponseModel<CategoryModel> { Data = null, ErrorMessage = e.Message, ResponseCode = 500 };
+                return new ApiJsonResponseModel<CategoryModel> { Data = null, ErrorMessage = e.Message, ResponseCode = HttpResponseCode.SERVER_ERROR };
             }
         }
     }

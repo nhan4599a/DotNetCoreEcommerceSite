@@ -1,6 +1,6 @@
 ﻿namespace Api.Models
 {
-    public partial class AspNetUserToken
+    public class AspNetUserToken
     {
         public string UserId { get; set; }
         public string LoginProvider { get; set; }

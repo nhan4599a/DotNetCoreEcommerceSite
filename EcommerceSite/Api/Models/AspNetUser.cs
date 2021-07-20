@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Api.Models
 {
-    public partial class AspNetUser
+    public class AspNetUser
     {
         public AspNetUser()
         {

@@ -1,6 +1,6 @@
 ﻿namespace Api.Models
 {
-    public partial class AspNetUserClaim
+    public class AspNetUserClaim
     {
         public int Id { get; set; }
         public string UserId { get; set; }

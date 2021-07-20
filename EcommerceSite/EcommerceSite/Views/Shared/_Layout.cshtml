@@ -1,4 +1,9 @@
-﻿
+﻿@model HomePageModel
+@{
+    var categories = Model.Categories;
+    var hotProducts = Model.HotProducts;
+    var newProducts = Model.NewProducts;
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +51,7 @@
                     }
                     else
                     {
-                        <li><a asp-action="logout"><i class="fa fa-user-o"></i> Logout, @User.Identity.Name</a></li>
+                        <li><a asp-action="logout" asp-controller="account"><i class="fa fa-user-o"></i> Logout, @User.Identity.Name</a></li>
                     }
                 </ul>
             </div>
@@ -73,8 +78,10 @@
                             <form>
                                 <select class="input-select">
                                     <option value="0">All Categories</option>
-                                    <option value="1">Category 01</option>
-                                    <option value="1">Category 02</option>
+                                    @foreach (var category in categories)
+                                    {
+                                        <option value="@category.Id">@category.Name</option>
+                                    }
                                 </select>
                                 <input class="input" placeholder="Search here">
                                 <button class="search-btn">Search</button>
@@ -164,12 +171,10 @@
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav">
                     <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Hot Deals</a></li>
-                    <li><a href="#">Categories</a></li>
-                    <li><a href="#">Laptops</a></li>
-                    <li><a href="#">Smartphones</a></li>
-                    <li><a href="#">Cameras</a></li>
-                    <li><a href="#">Accessories</a></li>
+                    @foreach (var category in categories)
+                    {
+                        <li><a href="#">@category.Name</a></li>
+                    }
                 </ul>
                 <!-- /NAV -->
             </div>

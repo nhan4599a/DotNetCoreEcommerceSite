@@ -1,9 +1,7 @@
 ﻿using Api.Models;
 using SharedModel;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Api.Helper
 {
@@ -21,7 +19,7 @@ namespace Api.Helper
                 Id = product.Id.ToString(),
                 CategoryName = product.Category.Name,
                 Name = product.Name,
-                Description = product.Decription,
+                Description = product.Description,
                 Price = product.Price
             };
         }

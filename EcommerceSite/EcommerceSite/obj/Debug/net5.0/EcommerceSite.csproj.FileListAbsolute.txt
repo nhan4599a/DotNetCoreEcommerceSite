@@ -292,6 +292,7 @@ C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\n
 C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\net5.0\refs\WindowsBase.dll
 C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\net5.0\EcommerceSite.Views.dll
 C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\net5.0\EcommerceSite.Views.pdb
+C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\net5.0\FluentValidation.dll
 C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\net5.0\Humanizer.dll
 C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
 C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
@@ -378,6 +379,8 @@ C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\n
 C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
+C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\net5.0\SharedModel.dll
+C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\bin\Debug\net5.0\SharedModel.pdb
 C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\obj\Debug\net5.0\EcommerceSite.csproj.AssemblyReference.cache
 C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\obj\Debug\net5.0\EcommerceSite.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\obj\Debug\net5.0\EcommerceSite.AssemblyInfoInputs.cache

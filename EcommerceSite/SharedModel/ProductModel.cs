@@ -14,14 +14,4 @@ namespace SharedModel
 
         public double Price { get; set; }
     }
-
-    public class ProductModelValidator : AbstractValidator<ProductModel>
-    {
-        public ProductModelValidator()
-        {
-            RuleFor(x => x.Name).NotEmpty().Length(1, 50);
-            RuleFor(x => x.Description).NotEmpty().MaximumLength(1024);
-            RuleFor(x => x.Price).GreaterThan(0);
-        }
-    }
 }

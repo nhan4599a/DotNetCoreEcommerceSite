@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="5.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.8" />
@@ -19,6 +20,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SharedModel\SharedModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\Images\Products\" />
   </ItemGroup>
 
 </Project>

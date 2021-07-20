@@ -2,7 +2,7 @@
 
 namespace Api.Models
 {
-    public partial class AspNetRole
+    public class AspNetRole
     {
         public AspNetRole()
         {
