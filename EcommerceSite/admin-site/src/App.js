@@ -8,6 +8,7 @@ import PostLogin from "./components/PostLogin";
 function App() {
 	return (
 		<Router>
+			
 			<LeftNavBar></LeftNavBar>
 			<TopNavBar></TopNavBar>
 			<Content></Content>

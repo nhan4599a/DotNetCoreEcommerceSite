@@ -18,62 +18,22 @@ export default class LeftNavBar extends React.Component {
 				<ul className="sidebar-menu do-nicescrol">
 					<li className="sidebar-header">MAIN NAVIGATION</li>
 					<li>
-						<Link to="/hello">
+						<Link to="/categories">
 							<i className="zmdi zmdi-view-dashboard"></i>{" "}
-							<span>Dashboard</span>
+							<span>Categories</span>
 						</Link>
 					</li>
-
 					<li>
-						<Link to="/goodbye">
-							<i className="zmdi zmdi-invert-colors"></i>{" "}
-							<span>UI Icons</span>
+						<Link to="/products">
+							<i className="zmdi zmdi-view-dashboard"></i>{" "}
+							<span>Products</span>
 						</Link>
 					</li>
-
 					<li>
-						<a href="forms.html">
-							<i className="zmdi zmdi-format-list-bulleted"></i>{" "}
-							<span>Forms</span>
-						</a>
-					</li>
-
-					<li>
-						<a href="tables.html">
-							<i className="zmdi zmdi-grid"></i>{" "}
-							<span>Tables</span>
-						</a>
-					</li>
-
-					<li>
-						<a href="calendar.html">
-							<i className="zmdi zmdi-calendar-check"></i>{" "}
-							<span>Calendar</span>
-							<small className="badge float-right badge-light">
-								New
-							</small>
-						</a>
-					</li>
-
-					<li>
-						<a href="profile.html">
-							<i className="zmdi zmdi-face"></i>{" "}
-							<span>Profile</span>
-						</a>
-					</li>
-
-					<li>
-						<a href="login.html" target="_blank">
-							<i className="zmdi zmdi-lock"></i>{" "}
-							<span>Login</span>
-						</a>
-					</li>
-
-					<li>
-						<a href="register.html" target="_blank">
-							<i className="zmdi zmdi-account-circle"></i>{" "}
-							<span>Registration</span>
-						</a>
+						<Link to="/users">
+							<i className="zmdi zmdi-view-dashboard"></i>{" "}
+							<span>Users</span>
+						</Link>
 					</li>
 				</ul>
 			</div>

@@ -14,7 +14,7 @@ namespace EcommerceSite.Helper
 
         private static ApiCaller instance;
 
-        private const string BASE_URL = "https://localhost:44351/api";
+        private const string BASE_URL = "https://localhost:44381/api";
 
         private ApiCaller()
         {

@@ -39,6 +39,8 @@ export default class TopNavBar extends React.Component {
 								</a>
 							</form>
 						</li>
+					</ul>
+					<ul className="navbar-nav align-items-center right-nav-link">
 						{this.state.userInfo ? (
 							<Link to="/">Hello</Link>
 						) : (
