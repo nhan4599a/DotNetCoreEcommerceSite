@@ -58,10 +58,6 @@ namespace AuthServer.Controllers
             {
                 ModelState.AddModelError("Login Error", "Account is locked out " + user.LockoutEnd);
             }
-            else if (signInResult.IsNotAllowed)
-            {
-                ModelState.AddModelError("Login Error", "Email is not confirmed");
-            }
             return SignIn(model.ReturnUrl);
         }
 
@@ -88,7 +84,7 @@ namespace AuthServer.Controllers
             var identityResult = await SignInManager.UserManager.CreateAsync(user, model.Password);
             if (identityResult.Succeeded)
             {
-                await SendUserValidationEmail(user);
+                //await SendUserValidationEmail(user);
                 return RedirectToAction("SignIn");
             }
             foreach (var error in identityResult.Errors)

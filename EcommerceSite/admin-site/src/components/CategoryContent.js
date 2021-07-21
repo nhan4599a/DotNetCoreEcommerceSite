@@ -8,12 +8,14 @@ export default class CategoryContent extends React.Component {
 
 	componentDidMount() {
 		const caller = new ApiCaller();
-		caller
-			.getAllCategories()
-			.then((data) => this.setState({ categories: data }));
+		caller.getAllCategories().then((data) => {
+			this.setState({ categories: data.data.data });
+		});
 	}
 
 	render() {
-		return <DataTable datasource={this.state.categories} />;
+		return (
+			<DataTable datasource={this.state.categories} title="Categories" />
+		);
 	}
 }
