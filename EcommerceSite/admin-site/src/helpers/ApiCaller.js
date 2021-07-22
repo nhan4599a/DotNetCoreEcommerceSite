@@ -3,26 +3,38 @@ import AuthHelper from "./AuthHelper";
 import SharedConstant from "../shared/CenterRepo";
 
 axios.interceptors.request.use(async (req) => {
+	req.url = `${SharedConstant.api_base_uri}/${req.url}`;
 	var user = await AuthHelper.getInstance().getManager().getUser();
-	req.headers.authorization = `Bearer ${user.access_token}`;
+	if (user) req.headers.authorization = `Bearer ${user.access_token}`;
 	return req;
 });
 
 axios.interceptors.response.use((res) => {
-	console.log(res);
 	return res;
 });
 
 export default class ApiCaller {
 	getAllProducts() {
-		return axios.get(`${SharedConstant.api_base_uri}/products/all`);
+		return axios.get("products/all");
 	}
 
 	getAllCategories() {
-		return axios.get(`${SharedConstant.api_base_uri}/categories/all`);
+		return axios.get("categories/all");
 	}
 
 	getAllUsers() {
-		return axios.get(`${SharedConstant.api_base_uri}/users/all`);
+		return axios.get("users/all");
+	}
+
+	addCategory(categoryName) {
+		return axios.post("categories/add", { name: categoryName });
+	}
+
+	addProduct(product, categoryId) {
+		return axios.post(`products/add?categoryId=${categoryId}`, product, {
+			headers: {
+				"Content-Type": "multipart/form-data",
+			},
+		});
 	}
 }

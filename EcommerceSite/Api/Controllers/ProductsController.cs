@@ -63,7 +63,7 @@ namespace Api.Controllers
 
         [HttpPost]
         [Route("add")]
-        public ApiJsonResponseModel<ProductModel> AddProduct([FromBody] ProductInputModel productModel, [FromQuery] int categoryId)
+        public ApiJsonResponseModel<ProductModel> AddProduct([FromForm] ProductInputModel productModel, [FromQuery] int categoryId)
         {
             var category = db.Categories.Find(categoryId);
             if (category == null)
@@ -85,7 +85,7 @@ namespace Api.Controllers
 
         [HttpPatch]
         [Route("edit")]
-        public ApiJsonResponseModel<ProductModel> EditProduct([FromBody] ProductInputModel model, [FromQuery] int productId)
+        public ApiJsonResponseModel<ProductModel> EditProduct([FromBody] ProductInputModel model, [FromQuery] int productId, [FromQuery] int categoryId)
         {
             if (!ModelState.IsValid)
                 return new ApiJsonResponseModel<ProductModel> { Data = null, ErrorMessage = "Model is invalid", ResponseCode = HttpResponseCode.BAD_REQUEST };
@@ -95,7 +95,7 @@ namespace Api.Controllers
             product.Name = model.Name;
             product.Price = model.Price;
             product.Description = model.Description;
-            product.CategoryId = model.CategoryId;
+            product.CategoryId = categoryId;
             try
             {
                 return new ApiJsonResponseModel<ProductModel> { Data = product.MapToProductModel() };
