@@ -13,9 +13,9 @@ namespace Api.Controllers
     {
         private readonly ApplicationDbContext db;
 
-        public CategoriesController()
+        public CategoriesController(ApplicationDbContext dbContext)
         {
-            db = new ApplicationDbContext();
+            db = dbContext;
         }
 
         [HttpGet]

@@ -44,6 +44,7 @@ export default class CategoryContent extends React.Component {
 				<DataTable
 					datasource={this.state.categories}
 					title="Categories"
+					additionalActions={["edit"]}
 				/>
 				<div className="card">
 					<div className="card-body">

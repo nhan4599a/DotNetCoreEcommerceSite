@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "oeDKlXhIvZOY/Hq2nXCIisgs8S71qSFoz1wcrG8NDfnykKnwItFCQhkWWxrokQBNDs5t/KSQK98Hq6zbqV4ywQ==",
+  "dgSpecHash": "6N2QBioSraLXFWpR0TFNVJnU860bHC5mr9TqDgSk2T1TSbSu0DQ6PRj/u9aCXbXJjS0gWQ1FSvwW9owmRvS1Vw==",
   "success": true,
   "projectFilePath": "C:\\Users\\nhan0\\source\\repos\\Assignment-1\\EcommerceSite\\EcommerceSite\\EcommerceSite.csproj",
   "expectedPackageFiles": [
@@ -124,7 +124,8 @@
     "C:\\Users\\nhan0\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\nhan0\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
     "C:\\Users\\nhan0\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "C:\\Users\\nhan0\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
+    "C:\\Users\\nhan0\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
+    "C:\\Users\\nhan0\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.7\\microsoft.netcore.app.host.win-x64.5.0.7.nupkg.sha512"
   ],
   "logs": []
 }

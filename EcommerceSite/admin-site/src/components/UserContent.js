@@ -13,6 +13,6 @@ export default class UserContent extends React.Component {
 	}
 
 	render() {
-		return <DataTable datasource={this.state.users} />;
+		return <DataTable datasource={this.state.users} title="Users" />;
 	}
 }

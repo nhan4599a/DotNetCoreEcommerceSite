@@ -3,7 +3,6 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -39,6 +38,7 @@ namespace Api
             });
             services.AddTransient<IValidator<CategoryModel>, CategoryModelValidator>();
             services.AddTransient<IValidator<ProductInputModel>, ProductInputModelValidator>();
+            services.AddTransient<ApplicationDbContext, ApplicationDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

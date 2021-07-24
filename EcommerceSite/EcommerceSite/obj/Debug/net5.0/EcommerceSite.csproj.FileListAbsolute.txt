@@ -391,7 +391,6 @@ C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\obj\Debug\n
 C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\obj\Debug\net5.0\EcommerceSite.RazorAssemblyInfo.cache
 C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\obj\Debug\net5.0\EcommerceSite.RazorAssemblyInfo.cs
 C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\obj\Debug\net5.0\staticwebassets\EcommerceSite.StaticWebAssets.Manifest.cache
-C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\obj\Debug\net5.0\staticwebassets\EcommerceSite.StaticWebAssets.xml
 C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\obj\Debug\net5.0\scopedcss\bundle\EcommerceSite.styles.css
 C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\obj\Debug\net5.0\EcommerceSite.TagHelpers.input.cache
 C:\Users\nhan0\source\repos\Assignment-1\EcommerceSite\EcommerceSite\obj\Debug\net5.0\EcommerceSite.TagHelpers.output.cache

@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Images\Products\" />
+    <None Include="wwwroot\Resources\Images\Products\a020fa8a-4772-45f6-a5d2-997789dd8a8d" />
   </ItemGroup>
 
 </Project>

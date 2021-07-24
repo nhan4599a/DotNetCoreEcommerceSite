@@ -1,10 +1,9 @@
 ﻿using Newtonsoft.Json;
 using SharedModel;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace EcommerceSite.Helper
 {
@@ -68,6 +67,11 @@ namespace EcommerceSite.Helper
             string response = await client.GetStringAsync(BASE_URL + "/products/new-products");
             var responseModel = JsonConvert.DeserializeObject<ApiJsonResponseModel<IEnumerable<ProductModel>>>(response);
             return responseModel.Data;
+        }
+
+        public string GetImageUrl(string productId)
+        {
+            return $"{BASE_URL}/products/image?productId={WebUtility.UrlEncode(productId)}";
         }
     }
 }

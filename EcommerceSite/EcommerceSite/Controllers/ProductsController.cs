@@ -20,5 +20,10 @@ namespace EcommerceSite.Controllers
             IEnumerable<ProductModel> products = await ApiCaller.getInstance().GetProducts();
             return View("Product", products);
         }
+
+        public static string GetImageUrl(string productId)
+        {
+            return ApiCaller.getInstance().GetImageUrl(productId);
+        }
     }
 }

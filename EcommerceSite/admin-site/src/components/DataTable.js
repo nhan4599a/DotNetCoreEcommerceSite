@@ -3,6 +3,7 @@ import React from "react";
 export default class DataTable extends React.Component {
 	render() {
 		var datasource = this.props.datasource;
+		var additionalActions = this.props.additionalActions;
 		var columnNames = datasource[0] ? Object.keys(datasource[0]) : [];
 		return (
 			<>
@@ -18,6 +19,7 @@ export default class DataTable extends React.Component {
 											columnNames.map((columnName) => (
 												<th>{columnName}</th>
 											))}
+										{additionalActions && <th>Action</th>}
 									</tr>
 								</thead>
 								<tbody>

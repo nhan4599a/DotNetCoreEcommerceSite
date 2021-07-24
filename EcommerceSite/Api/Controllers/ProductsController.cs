@@ -1,7 +1,9 @@
 ﻿using Api.Helper;
 using Api.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SharedModel;
 using System;
 using System.Collections.Generic;
@@ -18,9 +20,12 @@ namespace Api.Controllers
     {
         private readonly ApplicationDbContext db;
 
-        public ProductsController()
+        private readonly IWebHostEnvironment hostingEnvironment;
+
+        public ProductsController(ApplicationDbContext dbContext, IWebHostEnvironment environment)
         {
-            db = new ApplicationDbContext();
+            db = dbContext;
+            hostingEnvironment = environment;
         }
 
         [HttpGet]
@@ -29,7 +34,7 @@ namespace Api.Controllers
         {
             return new ApiJsonResponseModel<IEnumerable<ProductModel>>
             {
-                Data = db.Products.MapToProductModel()
+                Data = db.Products.AsNoTracking().Include(prod => prod.Category).MapToProductModel()
             };
         }
 
@@ -57,7 +62,7 @@ namespace Api.Controllers
         {
             return new ApiJsonResponseModel<IEnumerable<ProductModel>>
             {
-                Data = db.Products.Where(item => item.CategoryId == categoryId).MapToProductModel()
+                Data = db.Products.AsNoTracking().Where(item => item.CategoryId == categoryId).MapToProductModel()
             };
         }
 
@@ -118,11 +123,12 @@ namespace Api.Controllers
 
         [HttpGet]
         [Route("image")]
-        public ActionResult GetImage([FromQuery] int productId)
+        public ActionResult GetImage([FromQuery] string productId)
         {
             try
             {
-                return PhysicalFile(Path.Combine("Resources", "Images", "Products", $"{productId}"), "image/jpeg");
+                var path = Path.Combine(hostingEnvironment.WebRootPath, "Resources", "Images", "Products", $"{productId}");
+                return PhysicalFile(path, "image/jpeg");
             } catch (Exception)
             {
                 return NotFound();
@@ -133,7 +139,7 @@ namespace Api.Controllers
         [Route("hot-products")]
         public ApiJsonResponseModel<IEnumerable<ProductModel>> GetHotProducts()
         {
-            var hotProducts = db.Products.OrderBy(prod => prod.InvoiceDetails.Count).Take(5);
+            var hotProducts = db.Products.AsNoTracking().Include(prod => prod.Category).OrderBy(prod => prod.InvoiceDetails.Count).Take(5);
             return new ApiJsonResponseModel<IEnumerable<ProductModel>> { Data = hotProducts.MapToProductModel() };
         }
 
@@ -141,7 +147,7 @@ namespace Api.Controllers
         [Route("new-products")]
         public ApiJsonResponseModel<IEnumerable<ProductModel>> GetNewProducts()
         {
-            var newProducts = db.Products.Take(5).OrderBy(prod => prod.CreatedDate);
+            var newProducts = db.Products.AsNoTracking().Include(prod => prod.Category).Take(5).OrderBy(prod => prod.CreatedDate);
             return new ApiJsonResponseModel<IEnumerable<ProductModel>> { Data = newProducts.MapToProductModel() };
         }
 
