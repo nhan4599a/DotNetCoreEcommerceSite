@@ -1,9 +1,12 @@
+using EcommerceSite.Helper;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 
 namespace EcommerceSite
@@ -20,11 +23,11 @@ namespace EcommerceSite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            _ = services.AddAuthentication(options =>
-              {
-                  options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                  options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-              }).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+            }).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
             {
                 options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -36,7 +39,7 @@ namespace EcommerceSite
                 options.UsePkce = false;
                 options.SaveTokens = true;
                 options.GetClaimsFromUserInfoEndpoint = true;
-                options.SignedOutRedirectUri = "https://localhost:44381/Home/CookieLogout";
+                options.SignedOutRedirectUri = "https://localhost:44382/Account/CookieLogout";
                 options.Scope.Add("product.api");
                 options.Scope.Add("offline_access");
                 options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
@@ -44,8 +47,16 @@ namespace EcommerceSite
                     NameClaimType = "name"
                 };
             });
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             services.AddMvc();
             services.AddControllersWithViews();
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton(ApiCaller.GetInstance());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,7 +73,7 @@ namespace EcommerceSite
             app.UseStaticFiles();
             app.UseCookiePolicy(new CookiePolicyOptions
             {
-                MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.Lax
+                MinimumSameSitePolicy = SameSiteMode.Lax
             });
 
             app.UseRouting();
@@ -70,6 +81,7 @@ namespace EcommerceSite
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

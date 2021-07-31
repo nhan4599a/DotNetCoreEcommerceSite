@@ -1,0 +1,145 @@
+﻿@using EcommerceSite.Controllers
+@model SearchResultPageModel
+@{
+    var categoryList = Model.Categories.ToList();
+}
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="breadcrumb-tree">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">All Products</a></li>
+                    <li class="active">@(ViewBag.CategoryName ?? "All categories") (@Model.Products.Count() Result(s))</li>
+                </ul>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- ASIDE -->
+            <div id="aside" class="col-md-3">
+                <!-- aside Widget -->
+                <div class="aside">
+                    <h3 class="aside-title">Categories</h3>
+                    <div class="checkbox-filter">
+
+                        @for (int i = 0; i < categoryList.Count; i++)
+                        {
+                            <div class="input-checkbox">
+                                <input type="checkbox" id="category-@i">
+                                <label for="category-@i">
+                                    <span></span>
+                                    @categoryList[i].Name
+                                    @*<small>(120)</small>*@
+                                </label>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <!-- /aside Widget -->
+                <!-- aside Widget -->
+                <div class="aside">
+                    <h3 class="aside-title">Price</h3>
+                    <div class="price-filter">
+                        <div id="price-slider"></div>
+                        <div class="input-number price-min">
+                            <input id="price-min" type="number">
+                            <span class="qty-up">+</span>
+                            <span class="qty-down">-</span>
+                        </div>
+                        <span>-</span>
+                        <div class="input-number price-max">
+                            <input id="price-max" type="number">
+                            <span class="qty-up">+</span>
+                            <span class="qty-down">-</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /aside Widget -->
+            </div>
+            <!-- /ASIDE -->
+            <!-- STORE -->
+            <div id="store" class="col-md-9">
+                <!-- store top filter -->
+                <div class="store-filter clearfix">
+                    <div class="store-sort">
+                        <label>
+                            Sort By:
+                            <select class="input-select">
+                                <option value="0">Popular</option>
+                                <option value="1">Position</option>
+                            </select>
+                        </label>
+
+                        <label>
+                            Show:
+                            <select class="input-select">
+                                <option value="0">20</option>
+                                <option value="1">50</option>
+                            </select>
+                        </label>
+                    </div>
+                    <ul class="store-grid">
+                        <li class="active"><i class="fa fa-th"></i></li>
+                        <li><a href="#"><i class="fa fa-th-list"></i></a></li>
+                    </ul>
+                </div>
+                <!-- /store top filter -->
+                <!-- store products -->
+                <div class="row">
+                    @foreach (var product in Model.Products)
+                    {
+                        <!-- product -->
+                        <div class="col-md-4 col-xs-6">
+                            @await Component.InvokeAsync("ViewProduct", product);
+                        </div>
+                        <!-- /product -->
+                    }
+                </div>
+                <!-- /store products -->
+                <!-- store bottom filter -->
+                <div class="store-filter clearfix">
+                    <span class="store-qty">Showing 9-@Model.Products.Count() products</span>
+                    <ul class="store-pagination">
+                        @for (int i = 1; i <= ViewBag.MaxPageNumber; i++)
+                        {
+                            if (i == ViewBag.PageNumber)
+                            {
+                                <li class="active">@i</li>
+                            }
+                            else
+                            {
+                                <li><a href="#">@i</a></li>
+                            }
+                        }
+                        <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                    </ul>
+                </div>
+                <!-- /store bottom filter -->
+            </div>
+            <!-- /STORE -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+@section Scripts {
+<script>
+    var currentPage = @ViewBag.PageNumber;
+    $('ul.store-pagination > li').click(function() {
+        console.log(currentPage + 1);
+    });
+</script>
+}

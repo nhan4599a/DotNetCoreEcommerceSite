@@ -8,12 +8,18 @@ namespace EcommerceSite.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ApiCaller caller;
+
+        public HomeController(ApiCaller caller)
+        {
+            this.caller = caller;
+        }
+
         public async Task<IActionResult> Home()
         {
-            ApiCaller apiCaller = ApiCaller.getInstance();
-            var categories = await apiCaller.GetCategories();
-            var hotProducts = await apiCaller.GetHotProducts();
-            var newProducts = await apiCaller.GetNewProducts();
+            var categories = await caller.GetCategories();
+            var hotProducts = await caller.GetHotProducts();
+            var newProducts = await caller.GetNewProducts();
             HomePageModel model = new() { Categories = categories, HotProducts = hotProducts, NewProducts = newProducts };
             return View("Index", model);
         }

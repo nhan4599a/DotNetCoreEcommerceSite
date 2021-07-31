@@ -40,9 +40,9 @@ namespace Api.Controllers
 
         [HttpGet]
         [Route("get")]
-        public ApiJsonResponseModel<ProductModel> Get([FromQuery] int id)
+        public ApiJsonResponseModel<ProductModel> Get([FromQuery] string id)
         {
-            Product product = db.Products.Find(id);
+            Product product = db.Products.Include(prod => prod.Category).SingleOrDefault(prod => prod.Id.ToString() == id);
             if (product == null)
                 return new ApiJsonResponseModel<ProductModel>
                 {
@@ -143,6 +143,23 @@ namespace Api.Controllers
             return new ApiJsonResponseModel<IEnumerable<ProductModel>> { Data = hotProducts.MapToProductModel() };
         }
 
+        [HttpPost]
+        [Route("search")]
+        public ApiJsonResponseModel<IEnumerable<ProductModel>> SearchProducts([FromBody] SearchInputModel searchInput)
+        {
+            IEnumerable<Product> searchResult;
+            if (searchInput.CategoryId == 0)
+            {
+                searchResult = db.Products.AsNoTracking().Include(prod => prod.Category).Where(prod => EF.Functions.Like(prod.Name, $"%{searchInput.Keyword}%"));
+            }
+            else
+            {
+                searchResult = db.Products.AsNoTracking().Include(prod => prod.Category).Where(prod => EF.Functions.Like(prod.Name, $"%{searchInput.Keyword}%") &&
+                            prod.CategoryId == searchInput.CategoryId);
+            }
+            return new ApiJsonResponseModel<IEnumerable<ProductModel>>() { Data = searchResult.MapToProductModel() };
+        }
+
         [HttpGet]
         [Route("new-products")]
         public ApiJsonResponseModel<IEnumerable<ProductModel>> GetNewProducts()
@@ -153,11 +170,11 @@ namespace Api.Controllers
 
         private async Task SaveImage(IFormFile file, string productId)
         {
-            var folderName = Path.Combine("Resources", "Images", "Products");
+            var folderName = Path.Combine(hostingEnvironment.WebRootPath, "Resources", "Images", "Products");
             if (file.Length > 0)
             {
                 var fileName = productId;
-                var filePath = Path.Combine(Directory.GetCurrentDirectory(), folderName, fileName);
+                var filePath = Path.Combine(folderName, fileName);
                 var fileStream = new FileStream(filePath, FileMode.Create);
                 await file.CopyToAsync(fileStream);
             }

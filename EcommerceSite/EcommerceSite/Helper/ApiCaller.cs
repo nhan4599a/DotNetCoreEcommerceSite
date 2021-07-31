@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net;
+using System.Net.Http.Headers;
 
 namespace EcommerceSite.Helper
 {
@@ -20,7 +21,7 @@ namespace EcommerceSite.Helper
             client = new HttpClient();
         }
 
-        public static ApiCaller getInstance()
+        public static ApiCaller GetInstance()
         {
             if (instance == null)
                 instance = new ApiCaller();
@@ -69,9 +70,26 @@ namespace EcommerceSite.Helper
             return responseModel.Data;
         }
 
-        public string GetImageUrl(string productId)
+        public static string GetImageUrl(string productId)
         {
             return $"{BASE_URL}/products/image?productId={WebUtility.UrlEncode(productId)}";
+        }
+
+        public async Task<IEnumerable<ProductModel>> SearchProducts(SearchInputModel searchInput)
+        {
+            HttpContent postContent = new StringContent(JsonConvert.SerializeObject(searchInput));
+            postContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var response = await client.PostAsync(BASE_URL + "/products/search", postContent);
+            string content = await response.Content.ReadAsStringAsync();
+            var responseModel = JsonConvert.DeserializeObject<ApiJsonResponseModel<IEnumerable<ProductModel>>>(content);
+            return responseModel.Data;
+        }
+
+        public async Task<ProductModel> GetProductDetail(string productId)
+        {
+            var response = await client.GetStringAsync(BASE_URL + $"/products/get?id={WebUtility.UrlEncode(productId)}");
+            var responseModel = JsonConvert.DeserializeObject<ApiJsonResponseModel<ProductModel>>(response);
+            return responseModel.Data;
         }
     }
 }

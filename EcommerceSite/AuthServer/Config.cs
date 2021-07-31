@@ -21,9 +21,9 @@ namespace AuthServer
                 RequirePkce = false,
                 ClientSecrets = { new Secret("e41316e77ea871fe63180c82bc268544a361fa4b".Sha256()) },
                 UserSsoLifetime = 3600,
-                RedirectUris = { "https://localhost:44381/signin-oidc" },
-                FrontChannelLogoutUri = "https://localhost:44381/",
-                PostLogoutRedirectUris = { "https://localhost:44381/signout-callback-oidc" },
+                RedirectUris = { "https://localhost:44382/signin-oidc" },
+                FrontChannelLogoutUri = "https://localhost:44382/",
+                PostLogoutRedirectUris = { "https://localhost:44382/signout-callback-oidc" },
                 AllowOfflineAccess = true,
                 AllowedScopes = { "openid", "profile", "product.api" }
             },

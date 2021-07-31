@@ -160,6 +160,8 @@ export default class ProductContent extends React.Component {
 											this.state.product_image
 										)
 									}
+									width="200px"
+									height="200px"
 								/>
 							</div>
 							<div className="form-group">
